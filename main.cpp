@@ -25,6 +25,133 @@ struct ListNode {
 class Solution {
 public:
 
+//    71
+
+
+
+//    150
+
+
+
+//    20
+
+
+
+
+//    234
+
+
+
+
+//    143
+
+
+
+
+//    61
+    ListNode* rotateRight(ListNode* head, int k) {
+
+        if(head == NULL || head->next == NULL)
+            return head;
+        ListNode* dummyHead = new ListNode(0);
+        dummyHead->next = head;
+
+        ListNode* p = dummyHead;
+        ListNode* q = dummyHead;
+
+        int i = 0;
+        for (i = 0; q->next!=NULL; ++i) {
+            q = q->next;
+        }
+
+        for (int j = i-k%i; j > 0 ; --j) {
+            p = p->next;
+        }
+
+        q->next = dummyHead->next;
+        dummyHead->next = p->next;
+        p->next = NULL;
+
+        ListNode* resHead = dummyHead->next;
+        delete dummyHead;
+
+        return resHead;
+
+    }
+
+//    19
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+
+        ListNode* dummyHead = new ListNode(0);
+
+        dummyHead->next = head;
+
+        ListNode* p = dummyHead;
+        ListNode* q = dummyHead;
+
+        for (int i = 0; i < n + 1; ++i) {
+            q = q->next;
+        }
+
+        while (q != NULL) {
+            p = p->next;
+            q = q->next;
+        }
+
+        ListNode* delNode = p->next;
+        p->next = delNode->next;
+        delete delNode;
+
+        ListNode* resHead = dummyHead->next;
+        delete dummyHead;
+
+        return resHead;
+    }
+
+
+
+//    148
+    ListNode* sortList(ListNode* head) {
+
+    }
+
+//    147
+    ListNode* insertionSortList(ListNode* head) {
+
+    }
+
+//    25
+    ListNode* reverseKGroup(ListNode* head, int k) {
+
+    }
+
+//    24
+    ListNode* swapPairs(ListNode* head) {
+
+        ListNode* dummyHead = new ListNode(0);
+        dummyHead->next = head;
+
+        ListNode* p = dummyHead;
+
+        while (p->next != NULL && p->next->next != NULL) {
+            ListNode* node1 = p->next;
+            ListNode* node2 = node1->next;
+            ListNode* next = node2->next;
+
+            node1->next = next;
+            node2->next = node1;
+            p->next = node2;
+
+            p = node1;
+
+        }
+
+        ListNode* resHead = dummyHead->next;
+        delete dummyHead;
+
+        return resHead;
+    }
+
 //    21递归实现
     ListNode* mergeTwoLists1(ListNode* l1, ListNode* l2) {
         if(l1 == NULL)
